@@ -15,6 +15,8 @@ namespace ProjetoClinica.Controllers
         clEspAcoes acEsp = new clEspAcoes();
         clMedico modMedico = new clMedico();
         clMedicoAcoes acMedico = new clMedicoAcoes();
+        clPaciente modPaciente = new clPaciente();
+        clPacienteAcoes acPaciente = new clPacienteAcoes();
 
         //Carrega especialidades do medico
         public void carregarEsp()
@@ -82,7 +84,26 @@ namespace ProjetoClinica.Controllers
             ViewBag.msg = "Cadastro Realizado com sucesso!";
             return View();
         }
+        //Cadastro do paciente
+        public ActionResult cadPaciente()
+        {
 
+            return View();
+        }
+        [HttpPost]
+        public ActionResult cadPaciente(FormCollection frm)
+        {
+
+            modPaciente.nomePac = frm["txtNmPaciente"];
+            modPaciente.telPac = frm["txtTelefone"];
+            modPaciente.celPac = frm["txtCelular"];
+            modPaciente.emailPac = frm["txtEmail"];
+
+            acPaciente.inserirPaciente(modPaciente);
+
+            ViewBag.msg = "Cadastro Realizado com sucesso!";
+            return View();
+        }
 
         public ActionResult About()
         {

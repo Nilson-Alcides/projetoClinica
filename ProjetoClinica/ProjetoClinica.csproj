@@ -172,6 +172,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\cadEsp.cshtml" />
     <Content Include="Views\Home\cadMedico.cshtml" />
+    <Content Include="Views\Home\cadPaciente.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
