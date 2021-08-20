@@ -8,6 +8,7 @@ namespace ProjetoClinica.Models
     public class clEsp
     {
         public string codEspecialidade { get; set; }
+        
         public string especialidade { get; set; }
     }
 }
