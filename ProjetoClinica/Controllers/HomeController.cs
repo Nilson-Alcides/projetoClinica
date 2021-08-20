@@ -1,4 +1,5 @@
-﻿using ProjetoClinica.Dados;
+﻿using MySql.Data.MySqlClient;
+using ProjetoClinica.Dados;
 using ProjetoClinica.Models;
 using System;
 using System.Collections.Generic;
@@ -12,10 +13,41 @@ namespace ProjetoClinica.Controllers
     {
         clEsp modEsp = new clEsp();
         clEspAcoes acEsp = new clEspAcoes();
+        clMedico modMedico = new clMedico();
+        clMedicoAcoes acMedico = new clMedicoAcoes();
+
+        //Carrega especialidades do medico
+        public void carregarEsp()
+        {
+            List<SelectListItem> especialidades = new List<SelectListItem>();
+
+            using (MySqlConnection con = new MySqlConnection("Server=localhost;port=3307; DataBase=bdClin0408; user id=root;password=361190"))
+            {
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand("select * from tbEsp", con);
+                MySqlDataReader rdr = cmd.ExecuteReader();
+
+                while (rdr.Read())
+                {
+                    especialidades.Add(new SelectListItem
+                    {
+                        Text = rdr[1].ToString(),
+                        Value = rdr[0].ToString()
+                    });
+                }
+                con.Close();
+
+            }
+
+            ViewBag.esp = new SelectList(especialidades, "Value", "Text");
+        }
+        
+        //_______________________________________///___________________________
         public ActionResult Index()
         {
             return View();
         }
+
         //Cadastro de Especialidades
         public ActionResult cadEsp()
         {
@@ -27,6 +59,26 @@ namespace ProjetoClinica.Controllers
 
             modEsp.especialidade = frm["txtEsp"];
             acEsp.inserirEsp(modEsp);
+            ViewBag.msg = "Cadastro Realizado com sucesso!";
+            return View();
+        }
+
+        //Cadastro do Médico
+        public ActionResult cadMedico()
+        {
+            carregarEsp();
+            return View();
+        }
+        [HttpPost]
+        public ActionResult cadMedico(FormCollection frm)
+        {
+            carregarEsp();
+
+            modMedico.nomeMedico = frm["txtNmMedico"];
+            modMedico.codEspecialidade = Request["esp"];
+
+            acMedico.inserirMedico(modMedico);
+
             ViewBag.msg = "Cadastro Realizado com sucesso!";
             return View();
         }
