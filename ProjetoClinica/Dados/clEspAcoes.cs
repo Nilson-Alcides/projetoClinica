@@ -2,6 +2,7 @@
 using ProjetoClinica.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 
@@ -20,5 +21,16 @@ namespace ProjetoClinica.Dados
             cmd.ExecuteNonQuery();
             con.MyDesConectarBD();
         }
+        public DataTable consultaEspeciadade()
+        {
+            MySqlCommand cmd = new MySqlCommand("select * from tbEsp", con.MyConectarBD());
+            MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+            DataTable Especiadade = new DataTable();
+            da.Fill(Especiadade);
+            con.MyDesConectarBD();
+            return Especiadade;
+        }
+
     }
+
 }
