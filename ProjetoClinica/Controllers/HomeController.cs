@@ -20,6 +20,58 @@ namespace ProjetoClinica.Controllers
         clMedicoAcoes acMedico = new clMedicoAcoes();
         clPaciente modPaciente = new clPaciente();
         clPacienteAcoes acPaciente = new clPacienteAcoes();
+        clAtendimentoAcoes acAtend = new clAtendimentoAcoes();
+
+        //Carrega medico do medico
+        public void carregarMedicos()
+        {
+            List<SelectListItem> medicos = new List<SelectListItem>();
+
+            using (MySqlConnection con = new MySqlConnection("Server=localhost;port=3307; DataBase=bdClin0408; user id=root;password=361190"))
+            {
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand("select * from tbMedico", con);
+                MySqlDataReader rdr = cmd.ExecuteReader();
+
+                while (rdr.Read())
+                {
+                    medicos.Add(new SelectListItem
+                    {
+                        Text = rdr[1].ToString(),
+                        Value = rdr[0].ToString()
+                    });
+                }
+                con.Close();
+
+            }
+
+            ViewBag.med = new SelectList(medicos, "Value", "Text");
+        }
+        //Carrega Paciente do medico
+        public void carregarPacientes()
+        {
+            List<SelectListItem> pacientes = new List<SelectListItem>();
+
+            using (MySqlConnection con = new MySqlConnection("Server=localhost;port=3307; DataBase=bdClin0408; user id=root;password=361190"))
+            {
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand("select * from tbPaciente", con);
+                MySqlDataReader rdr = cmd.ExecuteReader();
+
+                while (rdr.Read())
+                {
+                    pacientes.Add(new SelectListItem
+                    {
+                        Text = rdr[1].ToString(),
+                        Value = rdr[0].ToString()
+                    });
+                }
+                con.Close();
+
+            }
+
+            ViewBag.pac = new SelectList(pacientes, "Value", "Text");
+        }
 
         //Carrega especialidades do medico
         public void carregarEsp()
@@ -48,8 +100,36 @@ namespace ProjetoClinica.Controllers
         }
         
         //_______________________________________///___________________________
+        
         public ActionResult Index()
         {
+            return View();
+        }
+        public ActionResult cadAtendimento()
+        {
+            carregarMedicos();
+            carregarPacientes();
+            return View();
+        }
+        [HttpPost]
+        public ActionResult cadAtendimento(clAtendimento modeloAtend)
+        {
+            
+            carregarMedicos();
+            carregarPacientes();
+            acAtend.TestarAgenda(modeloAtend);
+
+            if (modeloAtend.confAgendamento=="1")
+            {
+                modeloAtend.codPac = Request["pac"];
+                modeloAtend.codMedico = Request["med"];
+                acAtend.inserirAgenda(modeloAtend);
+                ViewBag.msg = "Agendamento realizado com sucesso";
+            }
+            else
+            {
+                ViewBag.msg = "Horário indisponível, por favor escolaher outra data/hora";
+            }
             return View();
         }
 
