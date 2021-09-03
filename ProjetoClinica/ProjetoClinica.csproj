@@ -177,6 +177,8 @@
     <Content Include="Views\Home\cadPaciente.cshtml" />
     <Content Include="Views\Home\ConsultaEspecialidade.cshtml" />
     <Content Include="Views\Home\cadAtendimento.cshtml" />
+    <Content Include="Views\Home\consAgenda.cshtml" />
+    <Content Include="Views\Home\consAgendaBusca.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

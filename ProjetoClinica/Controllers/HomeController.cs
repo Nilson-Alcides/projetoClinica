@@ -98,9 +98,37 @@ namespace ProjetoClinica.Controllers
 
             ViewBag.esp = new SelectList(especialidades, "Value", "Text");
         }
-        
+
         //_______________________________________///___________________________
-        
+
+        public ActionResult consAgenda()
+        {
+            GridView gvAtend = new GridView();
+            gvAtend.DataSource = acAtend.selecionaAgenda();
+            gvAtend.DataBind();
+            StringWriter sw = new StringWriter();
+            HtmlTextWriter htw = new HtmlTextWriter(sw);
+            gvAtend.RenderControl(htw);
+            ViewBag.GridViewString = sw.ToString();
+            return View();
+        }
+        public ActionResult consAgendaBusca()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult consAgendaBusca(clAtendimento modeloAtend)
+        {
+            GridView gvAtend = new GridView();
+            gvAtend.DataSource = acAtend.selecionaAgenda(modeloAtend);
+            gvAtend.DataBind();
+            StringWriter sw = new StringWriter();
+            HtmlTextWriter htw = new HtmlTextWriter(sw);
+            gvAtend.RenderControl(htw);
+            ViewBag.GridViewString = sw.ToString();
+            return View();
+            
+        }
         public ActionResult Index()
         {
             return View();

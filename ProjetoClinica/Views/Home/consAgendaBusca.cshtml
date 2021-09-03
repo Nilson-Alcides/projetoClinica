@@ -1,0 +1,28 @@
+﻿
+@model ProjetoClinica.Models.clAtendimento
+
+@{
+    ViewBag.Title = "consAgendaBusca";
+}
+
+<h2>consAgendaBusca</h2>
+
+
+@using (Html.BeginForm("Agendamento"))
+{
+    <div>Data do Atendimento</div>
+
+    <div class="editor-field">
+        @Html.EditorFor(m => m.dataAtend, new { htmlAttributes = new { @type = "date" } })
+    </div>
+
+    <br />
+
+    <div>
+        <input type="submit" value="Buscar" />
+    </div>
+
+}
+
+
+@Html.Raw(ViewBag.GridViewString)
