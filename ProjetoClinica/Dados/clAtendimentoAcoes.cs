@@ -68,7 +68,7 @@ namespace ProjetoClinica.Dados
             return atend;
         }
 
-        public DataTable selecionaAgenda(clAtendimento cm)
+        public DataTable selecionaAgendaData(clAtendimento cm)
         {
             MySqlCommand cmd = new MySqlCommand("Select * from tbAtendimento where dataAtend=@dataAtend ", con.MyConectarBD());
             cmd.Parameters.Add("@dataAtend", MySqlDbType.VarChar).Value = cm.dataAtend;
