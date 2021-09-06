@@ -120,7 +120,7 @@ namespace ProjetoClinica.Controllers
         public ActionResult consAgendaBusca(clAtendimento modeloAtend)
         {
             GridView gvAtend = new GridView();
-            gvAtend.DataSource = acAtend.selecionaAgenda(modeloAtend);
+            gvAtend.DataSource = acAtend.selecionaAgendaData(modeloAtend);
             gvAtend.DataBind();
             StringWriter sw = new StringWriter();
             HtmlTextWriter htw = new HtmlTextWriter(sw);
