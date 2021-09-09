@@ -129,6 +129,10 @@ namespace ProjetoClinica.Controllers
             return View();
             
         }
+        public ActionResult ListarPaciente()
+        {
+            return View(acPaciente.BuscarPac());
+        }
         public ActionResult Index()
         {
             return View();

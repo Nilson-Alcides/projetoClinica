@@ -2,6 +2,7 @@
 using ProjetoClinica.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 
@@ -21,6 +22,33 @@ namespace ProjetoClinica.Dados
 
             cmd.ExecuteNonQuery();
             con.MyDesConectarBD();
+        }
+
+        public List<clPaciente> BuscarPac()
+        {
+            List<clPaciente> Paclist = new List<clPaciente>();
+            MySqlCommand cmd = new MySqlCommand("Select * from tbPaciente", con.MyConectarBD());
+
+            MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+
+            DataTable dt = new DataTable();
+
+            da.Fill(dt);
+
+            con.MyDesConectarBD();
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                Paclist.Add(
+                    new clPaciente
+                    {
+                        codPac = Convert.ToInt32(dr["codPac"]),
+                        nomePac = Convert.ToString(dr["nomePac"]),
+                        telPac = Convert.ToString(dr["telPac"])
+                    }
+                    );
+            }
+            return Paclist;
         }
     }
 }

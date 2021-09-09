@@ -1,0 +1,40 @@
+﻿@model IEnumerable<ProjetoClinica.Models.clPaciente>
+
+@{
+    ViewBag.Title = "listarPaciente";
+}
+
+<h2>listarPaciente</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.codPac)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nomePac)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.telPac)
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.codPac)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nomePac)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.telPac)
+            </td>
+
+            <td>
+                @Html.ActionLink("Atualizar", "editarPaciente", new { id = item.codPac }) |
+                @Html.ActionLink("Excluir", "excluirPaciente", new { id = item.codPac }, new { onclick = "return confirm('Deseja realmente excluir?');" })
+            </td>
+        </tr>
+    }
+</table>

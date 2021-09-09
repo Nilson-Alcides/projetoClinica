@@ -56,10 +56,11 @@ namespace ProjetoClinica.Dados
         public DataTable selecionaAgenda()
         {
             // MySqlCommand cmd = new MySqlCommand("Select * from tbAtendimento", con.MyConectarBD());
-            MySqlCommand cmd = new MySqlCommand("select t1.codAtend as Código,t2.nomeMedico as Médico,t3.nomePac as Paciente,t4.especialidade as Especialidade,t1.dataAtend as Data,t1.horaAtend as Hora from tbAtendimento as t1" +
+            MySqlCommand cmd = new MySqlCommand("select t1.codAtend as Código,t2.nomeMedico as Médico,t3.nomePac as Paciente,t4.especialidade as Especialidade," +
+                                                " t1.dataAtend as Data,t1.horaAtend as Hora from tbAtendimento as t1" +
                                                 " INNER JOIN tbmedico as t2 ON t1.codMedico = t2.codMedico " +
-                                               " INNER JOIN tbesp as t4 ON t4.codEspecialidade = t2.codEspecialidade" +
-                                               " INNER JOIN tbPaciente as t3 ON t3.codPac = t1.codPac; ", con.MyConectarBD());
+                                                " INNER JOIN tbesp as t4 ON t4.codEspecialidade = t2.codEspecialidade" +
+                                                " INNER JOIN tbPaciente as t3 ON t3.codPac = t1.codPac; ", con.MyConectarBD());
 
             MySqlDataAdapter da = new MySqlDataAdapter(cmd);
             DataTable atend = new DataTable();
