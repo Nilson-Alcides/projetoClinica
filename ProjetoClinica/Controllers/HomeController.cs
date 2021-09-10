@@ -133,6 +133,22 @@ namespace ProjetoClinica.Controllers
         {
             return View(acPaciente.BuscarPac());
         }
+
+        public ActionResult editarPaciente(string id)
+        {
+            return View(acPaciente.BuscarPac().Find(modPaciente => modPaciente.codPac ==id));
+        }
+        [HttpPost]
+        public ActionResult editarPaciente(clPaciente cl)
+        {
+            acPaciente.atualizarPaciente(cl);
+            return View();
+        }
+        public ActionResult excluirPaciente(string id)
+        {
+            acPaciente.DeletePac(id);
+            return RedirectToAction("ListarPaciente");
+        }
         public ActionResult Index()
         {
             return View();

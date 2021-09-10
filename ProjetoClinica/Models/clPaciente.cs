@@ -7,7 +7,7 @@ namespace ProjetoClinica.Models
 {
     public class clPaciente
     {
-        public int codPac { get; set; }
+        public string codPac { get; set; }
         public string nomePac { get; set; }
        
         public string telPac { get; set; }

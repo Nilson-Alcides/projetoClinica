@@ -14,10 +14,11 @@ namespace ProjetoClinica.Dados
 
         public void TestarAgenda(clAtendimento agenda)
         {
-            MySqlCommand cmd = new MySqlCommand("select * from tbAtendimento where dataAtend = @data and horaAtend = @hora", con.MyConectarBD());
+            MySqlCommand cmd = new MySqlCommand("select * from tbAtendimento where dataAtend = @data and horaAtend = @hora and codMedico=@codMedico", con.MyConectarBD());
 
             cmd.Parameters.Add("@data", MySqlDbType.VarChar).Value = agenda.dataAtend;
             cmd.Parameters.Add("@hora", MySqlDbType.VarChar).Value = agenda.horaAtend;
+            cmd.Parameters.Add("@codMedico", MySqlDbType.VarChar).Value = agenda.codMedico;
 
             MySqlDataReader leitor;
 

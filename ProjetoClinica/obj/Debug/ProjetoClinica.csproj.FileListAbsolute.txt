@@ -85,7 +85,6 @@ C:\Mega\PROJETO_ASP.NET\projetoClinica\ProjetoClinica\bin\System.Web.WebPages.Ra
 C:\Mega\PROJETO_ASP.NET\projetoClinica\ProjetoClinica\bin\Newtonsoft.Json.xml
 C:\Mega\PROJETO_ASP.NET\projetoClinica\ProjetoClinica\bin\Antlr3.Runtime.pdb
 C:\Mega\PROJETO_ASP.NET\projetoClinica\ProjetoClinica\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Mega\PROJETO_ASP.NET\projetoClinica\ProjetoClinica\obj\Debug\ProjetoClinica.csprojAssemblyReference.cache
 C:\Mega\PROJETO_ASP.NET\projetoClinica\ProjetoClinica\obj\Debug\ProjetoClinica.csproj.CoreCompileInputs.cache
 C:\Mega\PROJETO_ASP.NET\projetoClinica\ProjetoClinica\obj\Debug\ProjetoClinica.csproj.CopyComplete
 C:\Mega\PROJETO_ASP.NET\projetoClinica\ProjetoClinica\obj\Debug\ProjetoClinica.dll

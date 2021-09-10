@@ -1,0 +1,36 @@
+﻿@model ProjetoClinica.Models.clPaciente
+
+@{
+    /**/
+
+    ViewBag.Title = "editarPaciente";
+}
+
+<h2>editarPaciente</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.codPac)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.nomePac, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.nomePac, new { htmlAttributes = new { @class = "form-control", } })
+            @Html.ValidationMessageFor(model => model.nomePac, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.telPac, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.telPac, new { htmlAttributes = new { @class = "form-control", } })
+            @Html.ValidationMessageFor(model => model.telPac, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <br />
+    <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="Atualizar" class="btn btn-default" />
+    </div>
+}
